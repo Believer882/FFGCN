@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biology Dagano Boi</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#000000" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --card-bg: #f9f9f9;
+      --rainbow: linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red);
+    }
+    .dark {
+      --bg: #000000;
+      --text: #ffffff;
+      --card-bg: #111;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+    .container { padding: 20px; max-width: 800px; margin: 0 auto; }
+    h1 {
+      text-align: center;
+      margin: 30px 0;
+      background: var(--rainbow);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 2.2em;
+    }
+    .book-card {
+      background: var(--card-bg);
+      padding: 16px;
+      margin: 12px 0;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-left: 4px solid transparent;
+    }
+    .book-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-left: 4px solid;
+      border-image: var(--rainbow) 1;
+    }
+    #reader {
+      display: none;
+      height: 100vh;
+      background: var(--bg);
+      position: relative;
+    }
+    #page-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+    }
+    #page-container img {
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 16px;
+      z-index: 100;
+    }
+    .rainbow-btn {
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background: var(--rainbow);
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--rainbow);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="library" class="container">
+    <h1>📚 Biology Dagano Boi</h1>
+    <div id="book-list"></div>
+  </div>
+
+  <div id="reader">
+    <button class="back-btn" onclick="showLibrary()">← Back</button>
+    <div id="page-container"></div>
+    <div class="controls">
+      <button class="rainbow-btn" id="prev">‹</button>
+      <button class="rainbow-btn" id="next">›</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

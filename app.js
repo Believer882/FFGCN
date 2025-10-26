@@ -24,7 +24,8 @@ books.forEach(book => {
 
 function loadBook(book) {
   currentBook = book;
-  const url = `https://drive.google.com/uc?export=download&id=${book.id}`;
+  const fileId = book.id;
+  const url = `https://corsproxy.io/?https://drive.google.com/uc?export=download&id=${fileId}`;
   
   document.getElementById('library').style.display = 'none';
   document.getElementById('reader').style.display = 'block';
@@ -48,8 +49,8 @@ function loadBook(book) {
     loadPages();
   }).catch(err => {
     document.getElementById('page-container').innerHTML = 
-      `<p style="color:red">❌ Failed to load ${book.title}. Check internet or file access.</p>`;
-    console.error(err);
+      `<p style="color:red">❌ Failed to load ${book.title}. Try again or check internet.</p>`;
+    console.error("PDF Load Error:", err);
   });
 }
 
